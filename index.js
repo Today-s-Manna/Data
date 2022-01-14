@@ -32,16 +32,16 @@ for (const [date, toRead] of Object.entries(mccheyne)) {
         verses: [],
       };
     }
-    plan[date][`${book}${chapter}`].verses.push(newVerse);
+    plan[date][`${book}${chapter}`].verses.push({ verse: newVerse, content });
   }
 }
 
 for (const [date, toRead] of Object.entries(plan)) {
-  plan[date] = Object.entries(toRead).map(([_, value]) => ({
-    ...value,
-    verses: value.verses.sort(),
-  }));
+  plan[date] = Object.entries(toRead).map(([_, value]) => value);
 }
 
-fs.writeFileSync("plan.json", JSON.stringify(plan));
-fs.writeFileSync("holy_dictionary.json", JSON.stringify(holyDictionary));
+fs.writeFileSync("plan.json", JSON.stringify(plan, null, 2));
+fs.writeFileSync(
+  "holy_dictionary.json",
+  JSON.stringify(holyDictionary, null, 2)
+);
