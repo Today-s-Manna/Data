@@ -11,7 +11,7 @@ for (const [date, toRead] of Object.entries(mccheyne)) {
   for (const { book, verse, content } of toRead) {
     const splitted = verse.split(" : ");
     const chapter = parseInt(splitted[0]);
-    const newVerse = parseInt(splitted[1]);
+    const verseNumber = parseInt(splitted[1]);
 
     if (!holyDictionary[book]) {
       holyDictionary[book] = {};
@@ -19,7 +19,7 @@ for (const [date, toRead] of Object.entries(mccheyne)) {
     if (!holyDictionary[book][chapter]) {
       holyDictionary[book][chapter] = {};
     }
-    holyDictionary[book][chapter][newVerse] = content;
+    holyDictionary[book][chapter][verseNumber] = content;
 
     if (!plan[date]) {
       plan[date] = {};
@@ -32,7 +32,10 @@ for (const [date, toRead] of Object.entries(mccheyne)) {
         verses: [],
       };
     }
-    plan[date][`${book}${chapter}`].verses.push({ verse: newVerse, content });
+    plan[date][`${book}${chapter}`].verses.push({
+      verse: verseNumber,
+      content,
+    });
   }
 }
 
