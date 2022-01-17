@@ -43,7 +43,7 @@ for (const [date, toRead] of Object.entries(plan)) {
   plan[date] = Object.entries(toRead).map(([_, value]) => value);
 }
 
-fs.writeFileSync("plan.json", JSON.stringify(plan, null, 2));
+fs.writeFileSync("plan.json", JSON.stringify({ plan }, null, 2));
 fs.writeFileSync(
   "holy_dictionary.json",
   JSON.stringify(holyDictionary, null, 2)
